@@ -84,17 +84,30 @@ letter-spacing:.08em;font-size:11px;user-select:none}
 .scrape-log ul{margin:11px 0 0;padding:0;list-style:none;line-height:1.7}
 .scrape-log li{border-bottom:1px solid #1c1f27;padding:3px 0}
 .scrape-log b{color:var(--fg);font-weight:600}
-.proj{font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;
-background:#23262f;color:var(--faint);border:1px solid #2c3040;border-radius:5px;
-padding:1px 5px;margin-left:5px;cursor:help}
-.legend{color:var(--faint);font-size:11.5px;margin:0 0 12px;line-height:1.5}
-.legend .proj{margin:0 4px 0 0;cursor:default}
+.mu-main{font-weight:500}
+.proj-tog{display:inline-flex;align-items:center;gap:5px;vertical-align:middle;
+margin-left:8px;font:inherit;font-size:11px;line-height:1;cursor:pointer;
+background:var(--accent-dim);color:#a9cbff;border:1px solid #2c4a78;
+border-radius:999px;padding:3px 9px;transition:background .12s,border-color .12s}
+.proj-tog:hover,.proj-tog[aria-expanded="true"]{background:#244068;border-color:#3a5d92}
+.proj-tog b{color:#dbe8ff;font-weight:650}
+.proj-n{background:#0e1a2e;color:#7fa8e0;border-radius:999px;padding:0 5px;font-size:9.5px;font-weight:600}
+.proj-tog .chev{transition:transform .15s;font-size:9px;opacity:.8}
+.proj-tog[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.proj-panel{margin:7px 0 2px;background:#141824;border:1px solid var(--line);
+border-radius:9px;padding:9px 12px;max-width:max-content}
+.proj-slot{color:var(--faint);font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.proj-panel ol{margin:0;padding-left:18px;line-height:1.75;color:var(--fg);font-size:12.5px}
+.proj-panel li span{color:var(--faint);font-size:11px;padding:0 2px}
+.legend{color:var(--muted);font-size:11.5px;margin:0 0 12px;line-height:1.55}
+.legend .proj-tag{display:inline-flex;align-items:center;gap:4px;background:var(--accent-dim);
+color:#a9cbff;border:1px solid #2c4a78;border-radius:999px;padding:1px 8px;font-size:10.5px}
 </style></head><body>
 <main>
 <header class="topbar">
   <div>
     <h1>World Cup 2026 <span class="accent">Price Tracker</span></h1>
-    <div class="sub">Sunday May 31, 2026 · 3:23 PM · party of 3 & 4 · ranked by value</div>
+    <div class="sub">Sunday May 31, 2026 · 3:30 PM · party of 3 & 4 · ranked by value</div>
   </div>
   <div class="stats"><span class="stat"><b>39</b> matches</span><span class="stat">cheapest local <b>$194</b>/seat</span><span class="stat">first match <b>Jun 13</b></span></div>
 </header>
@@ -286,7 +299,7 @@ value &amp; trend; buy only through FIFA official channels.</div></div>
       </div>
     </article></div></section>
 <section><h2>Full watchlist</h2>
-<p class="legend">Knockout slots stay <b>TBD vs TBD</b> until teams are set — hover <span class="proj">likely ⌄</span> for the bracket slot and the likeliest matchups projected from FIFA rankings (an estimate, not a forecast).</p>
+<p class="legend">Knockout slots stay <b>TBD vs TBD</b> until teams are set — tap <span class="proj-tag">🔮 likely ▾</span> on a slot for the matchups projected from FIFA rankings (an estimate, not a forecast).</p>
 <div class="controls">
   <div class="ctl-label">Location <span>(none checked = all)</span></div>
   <div class="locs"><label class="loc"><input type="checkbox" class="locchk" value="MetLife" onchange="filt()"> MetLife <span class="city">· East Rutherford NJ</span></label><label class="loc"><input type="checkbox" class="locchk" value="Philadelphia" onchange="filt()"> Philadelphia <span class="city">· Philadelphia PA</span></label><label class="loc"><input type="checkbox" class="locchk" value="Gillette" onchange="filt()"> Gillette <span class="city">· Foxborough MA</span></label><label class="loc"><input type="checkbox" class="locchk" value="AT&amp;T" onchange="filt()"> AT&amp;T <span class="city">· Arlington TX</span></label><label class="loc"><input type="checkbox" class="locchk" value="Hard Rock" onchange="filt()"> Hard Rock <span class="city">· Miami FL</span></label><label class="loc"><input type="checkbox" class="locchk" value="Mercedes-Benz" onchange="filt()"> Mercedes-Benz <span class="city">· Atlanta GA</span></label></div>
@@ -399,11 +412,7 @@ value &amp; trend; buy only through FIFA official channels.</div></div>
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,7.9 13.3,7.9 26.7,7.9 40.0,2.0 53.3,2.0 66.7,2.0 80.0,2.0 93.3,2.0 106.7,24.6 120.0,26.0"/></svg></td>
     </tr><tr data-venue="Philadelphia" data-fav="">
       <td data-sort="2026-07-04 17:00">Sat Jul 4 · 5:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: W74 vs W77
-Likeliest matchups:
-1. Germany vs France
-2. Germany vs Senegal
-3. Ecuador vs France">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>Germany v France</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket W74 vs W77</div><ol><li>Germany <span>vs</span> France</li><li>Germany <span>vs</span> Senegal</li><li>Ecuador <span>vs</span> France</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>R16</td>
       <td>Philadelphia</td>
       <td class="num key">$947</td>
@@ -416,11 +425,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,26.0 24.0,26.0 48.0,26.0 72.0,26.0 96.0,26.0 120.0,26.0"/></svg></td>
     </tr><tr data-venue="MetLife" data-fav="">
       <td data-sort="2026-07-19 15:00">Sun Jul 19 · 3:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: W101 vs W102
-Likeliest matchups:
-1. France vs Argentina
-2. Spain vs Argentina
-3. Spain vs France">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>France v Argentina</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket W101 vs W102</div><ol><li>France <span>vs</span> Argentina</li><li>Spain <span>vs</span> Argentina</li><li>Spain <span>vs</span> France</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>Final</td>
       <td>MetLife</td>
       <td class="num key">$7,449</td>
@@ -446,11 +451,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#d73027" stroke-width="1.5" points="0.0,26.0 17.1,2.0 34.3,2.0 51.4,2.0 68.6,2.0 85.7,2.0 102.9,2.0 120.0,2.0"/></svg></td>
     </tr><tr data-venue="MetLife" data-fav="">
       <td data-sort="2026-07-05 16:00">Sun Jul 5 · 4:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: W76 vs W78
-Likeliest matchups:
-1. Brazil vs Senegal
-2. Brazil vs France
-3. Netherlands vs Senegal">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>Brazil v Senegal</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket W76 vs W78</div><ol><li>Brazil <span>vs</span> Senegal</li><li>Brazil <span>vs</span> France</li><li>Netherlands <span>vs</span> Senegal</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>R16</td>
       <td>MetLife</td>
       <td class="num key">$1,074</td>
@@ -502,11 +503,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,2.0 17.1,2.0 34.3,2.0 51.4,2.0 68.6,2.0 85.7,2.0 102.9,26.0 120.0,26.0"/></svg></td>
     </tr><tr data-venue="MetLife" data-fav="">
       <td data-sort="2026-06-30 17:00">Tue Jun 30 · 5:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: 1I vs 3(C/D/F/G/H)
-Likeliest matchups:
-1. France vs Australia
-2. France vs Egypt
-3. Senegal vs Australia">likely ⌄</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>France v Australia</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket 1I vs 3(C/D/F/G/H)</div><ol><li>France <span>vs</span> Australia</li><li>France <span>vs</span> Egypt</li><li>Senegal <span>vs</span> Australia</li></ol></div> <span class="badge tbd">TBD teams</span></td>
       <td>R32</td>
       <td>MetLife</td>
       <td class="num key">$722</td>
@@ -519,11 +516,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,2.0 20.0,2.0 40.0,2.0 60.0,2.0 80.0,2.0 100.0,26.0 120.0,26.0"/></svg></td>
     </tr><tr data-venue="Gillette" data-fav="">
       <td data-sort="2026-07-09 16:00">Thu Jul 9 · 4:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: W89 vs W90
-Likeliest matchups:
-1. France vs Netherlands
-2. France vs Brazil
-3. Germany vs Netherlands">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>France v Netherlands</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket W89 vs W90</div><ol><li>France <span>vs</span> Netherlands</li><li>France <span>vs</span> Brazil</li><li>Germany <span>vs</span> Netherlands</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>QF</td>
       <td>Gillette</td>
       <td class="num key">$1,216</td>
@@ -575,11 +568,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,2.0 15.0,14.0 30.0,26.0 45.0,26.0 60.0,26.0 75.0,26.0 90.0,26.0 105.0,26.0 120.0,26.0"/></svg></td>
     </tr><tr data-venue="Gillette" data-fav="">
       <td data-sort="2026-06-29 16:30">Mon Jun 29 · 4:30pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: 1E vs 3(A/B/C/D/F)
-Likeliest matchups:
-1. Germany vs Australia
-2. Germany vs Sweden
-3. Ecuador vs Australia">likely ⌄</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>Germany v Australia</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket 1E vs 3(A/B/C/D/F)</div><ol><li>Germany <span>vs</span> Australia</li><li>Germany <span>vs</span> Sweden</li><li>Ecuador <span>vs</span> Australia</li></ol></div> <span class="badge tbd">TBD teams</span></td>
       <td>R32</td>
       <td>Gillette</td>
       <td class="num key">$558</td>
@@ -696,11 +685,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,2.0 20.0,2.0 40.0,2.0 60.0,2.0 80.0,2.0 100.0,26.0 120.0,26.0"/></svg></td>
     </tr><tr data-venue="Mercedes-Benz" data-fav="">
       <td data-sort="2026-07-01 12:00">Wed Jul 1 · 12:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: 1L vs 3(E/H/I/J/K)
-Likeliest matchups:
-1. England vs Algeria
-2. England vs Norway
-3. Croatia vs Algeria">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>England v Algeria</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket 1L vs 3(E/H/I/J/K)</div><ol><li>England <span>vs</span> Algeria</li><li>England <span>vs</span> Norway</li><li>Croatia <span>vs</span> Algeria</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>R32</td>
       <td>Mercedes-Benz</td>
       <td class="num key">$481</td>
@@ -713,11 +698,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,26.0 24.0,26.0 48.0,26.0 72.0,26.0 96.0,26.0 120.0,26.0"/></svg></td>
     </tr><tr data-venue="Hard Rock" data-fav="">
       <td data-sort="2026-07-03 18:00">Fri Jul 3 · 6:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: 1J vs 2H
-Likeliest matchups:
-1. Argentina vs Uruguay
-2. Argentina vs Spain
-3. Austria vs Uruguay">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>Argentina v Uruguay</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket 1J vs 2H</div><ol><li>Argentina <span>vs</span> Uruguay</li><li>Argentina <span>vs</span> Spain</li><li>Austria <span>vs</span> Uruguay</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>R32</td>
       <td>Hard Rock</td>
       <td class="num key">$1,642</td>
@@ -730,11 +711,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,26.0 30.0,26.0 60.0,26.0 90.0,26.0 120.0,26.0"/></svg></td>
     </tr><tr data-venue="AT&amp;T" data-fav="">
       <td data-sort="2026-07-06 15:00">Mon Jul 6 · 3:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: W83 vs W84
-Likeliest matchups:
-1. Croatia vs Spain
-2. Croatia vs Argentina
-3. England vs Spain">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>Croatia v Spain</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket W83 vs W84</div><ol><li>Croatia <span>vs</span> Spain</li><li>Croatia <span>vs</span> Argentina</li><li>England <span>vs</span> Spain</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>QF</td>
       <td>AT&amp;T</td>
       <td class="num key">$827</td>
@@ -747,11 +724,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#d73027" stroke-width="1.5" points="0.0,26.0 24.0,26.0 48.0,26.0 72.0,26.0 96.0,2.0 120.0,2.0"/></svg></td>
     </tr><tr data-venue="Mercedes-Benz" data-fav="">
       <td data-sort="2026-07-07 12:00">Tue Jul 7 · 12:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: W86 vs W88
-Likeliest matchups:
-1. Argentina vs Iran
-2. Argentina vs Belgium
-3. Spain vs Iran">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>Argentina v Iran</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket W86 vs W88</div><ol><li>Argentina <span>vs</span> Iran</li><li>Argentina <span>vs</span> Belgium</li><li>Spain <span>vs</span> Iran</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>R16</td>
       <td>Mercedes-Benz</td>
       <td class="num key">$856</td>
@@ -764,11 +737,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,26.0 30.0,26.0 60.0,26.0 90.0,26.0 120.0,26.0"/></svg></td>
     </tr><tr data-venue="Hard Rock" data-fav="">
       <td data-sort="2026-07-11 17:00">Sat Jul 11 · 5:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: W91 vs W92
-Likeliest matchups:
-1. Brazil vs England
-2. Brazil vs Croatia
-3. France vs England">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>Brazil v England</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket W91 vs W92</div><ol><li>Brazil <span>vs</span> England</li><li>Brazil <span>vs</span> Croatia</li><li>France <span>vs</span> England</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>QF</td>
       <td>Hard Rock</td>
       <td class="num key">$1,912</td>
@@ -781,11 +750,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,26.0 30.0,26.0 60.0,26.0 90.0,26.0 120.0,26.0"/></svg></td>
     </tr><tr data-venue="Mercedes-Benz" data-fav="">
       <td data-sort="2026-07-15 15:00">Wed Jul 15 · 3:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: W99 vs W100
-Likeliest matchups:
-1. England vs Argentina
-2. England vs Spain
-3. France vs Argentina">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>England v Argentina</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket W99 vs W100</div><ol><li>England <span>vs</span> Argentina</li><li>England <span>vs</span> Spain</li><li>France <span>vs</span> Argentina</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>SF</td>
       <td>Mercedes-Benz</td>
       <td class="num key">$2,115</td>
@@ -798,11 +763,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#1a9850" stroke-width="1.5" points="0.0,26.0 30.0,26.0 60.0,26.0 90.0,26.0 120.0,26.0"/></svg></td>
     </tr><tr data-venue="Hard Rock" data-fav="">
       <td data-sort="2026-07-18 17:00">Sat Jul 18 · 5:00pm</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: L101 vs L102
-Likeliest matchups:
-1. Spain vs England
-2. Spain vs France
-3. France vs England">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>Spain v England</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket L101 vs L102</div><ol><li>Spain <span>vs</span> England</li><li>Spain <span>vs</span> France</li><li>France <span>vs</span> England</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span></td>
       <td>3rd Place</td>
       <td>Hard Rock</td>
       <td class="num key">$904</td>
@@ -828,11 +789,7 @@ Likeliest matchups:
       <td><svg width="120" height="28" viewBox="0 0 120 28"><polyline fill="none" stroke="#d73027" stroke-width="1.5" points="0.0,26.0 17.1,2.0 34.3,2.0 51.4,2.0 68.6,2.0 85.7,2.0 102.9,2.0 120.0,2.0"/></svg></td>
     </tr><tr data-venue="AT&amp;T" data-fav="">
       <td data-sort="2026-07-14">Tue Jul 14</td>
-      <td>TBD vs TBD <span class="proj" title="Bracket: W97 vs W98
-Likeliest matchups:
-1. France vs Spain
-2. France vs Argentina
-3. Brazil vs Spain">likely ⌄</span> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span> <span class="badge verify">verify</span></td>
+      <td><span class="mu-main">TBD vs TBD</span><button type="button" class="proj-tog" aria-expanded="false" onclick="toggleProj(this)">🔮 likely <b>France v Spain</b><span class="proj-n">+2</span><span class="chev">▾</span></button><div class="proj-panel" hidden><div class="proj-slot">likeliest matchups · proj. from FIFA rank · bracket W97 vs W98</div><ol><li>France <span>vs</span> Spain</li><li>France <span>vs</span> Argentina</li><li>Brazil <span>vs</span> Spain</li></ol></div> <span class="badge marquee">marquee</span> <span class="badge tbd">TBD teams</span> <span class="badge verify">verify</span></td>
       <td>SF</td>
       <td>AT&amp;T</td>
       <td class="num key">$2,257</td>
@@ -893,4 +850,6 @@ return num?parseFloat(String(v).replace(/[^0-9.\-]/g,'')):String(v).toLowerCase(
 if(num){const ax=isNaN(x),ay=isNaN(y);if(ax&&ay)return 0;if(ax)return 1;if(ay)return -1;return dir==='asc'?x-y:y-x;}
 return dir==='asc'?(x<y?-1:x>y?1:0):(x<y?1:x>y?-1:0);}).forEach(r=>b.appendChild(r));
 const ar=document.createElement('span');ar.className='ar';ar.textContent=dir==='asc'?' ▲':' ▼';th.appendChild(ar);}
+function toggleProj(b){const open=b.getAttribute('aria-expanded')==='true';
+b.setAttribute('aria-expanded',String(!open));b.nextElementSibling.hidden=open;}
 </script></body></html>
