@@ -133,15 +133,255 @@ display:flex;align-items:center;gap:5px;margin:9px 0 3px}
 .proj-src.agree{color:var(--faint)}
 .proj-panel ol{margin:0;padding-left:18px;line-height:1.75;color:var(--fg);font-size:12.5px}
 .proj-panel li span{color:var(--faint);font-size:11px;padding:0 2px}
+.tabs{display:flex;gap:4px;margin:0 0 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);
+font:inherit;font-size:13.5px;font-weight:600;padding:9px 14px;margin-bottom:-1px;cursor:pointer;
+transition:color .12s,border-color .12s}
+.tab:hover{color:var(--fg)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .legend{color:var(--muted);font-size:11.5px;margin:0 0 12px;line-height:1.55}
 .legend .proj-tag{display:inline-flex;align-items:center;gap:4px;background:var(--accent-dim);
 color:#a9cbff;border:1px solid #2c4a78;border-radius:999px;padding:1px 8px;font-size:10.5px}
+</style><style>@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap');
+.pg-root { --pitch: #1a2e1a;
+    --pitch-mid: #1e311e;
+    --pitch-light: #2f452f;
+    --line: #3d6b3d;
+    --gold: #e8c84a;
+    --gold-dim: #b89c2e;
+    --white: #f0f0eb;
+    --muted: #7a8f7a;
+    --card-bg: #1c2e1c;
+    --card-border: #2e462e;
+    --tag-bg: #1f311f;
+    --tag-border: #365636;
+    --radius: 6px;
+    --rank-espn: #4a9eff;
+    --rank-nbc: #ff8c42;
+    --rank-fox: #e84a4a; }
+.pg-root * { box-sizing: border-box; margin: 0; padding: 0; }
+.pg-root { background: var(--pitch);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh; }
+.pg-root .header { background: var(--pitch-mid);
+    border-bottom: 2px solid var(--line);
+    padding: 18px 24px 14px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap; }
+.pg-root .header-title { font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold);
+    line-height: 1; }
+.pg-root .header-sub { font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 4px; }
+.pg-root .legend-row { display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-left: auto;
+    flex-wrap: wrap; }
+.pg-root .legend-item { display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase; }
+.pg-root .legend-dot { width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0; }
+.pg-root .filter-row { display: flex;
+    gap: 6px;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+    background: var(--pitch);
+    position: sticky;
+    top: 69px;
+    z-index: 99; }
+.pg-root .filter-btn { background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--muted);
+    border-radius: 3px;
+    padding: 4px 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s; }
+.pg-root .filter-btn:hover, .pg-root .filter-btn.active { background: var(--gold);
+    border-color: var(--gold);
+    color: #1a2e1a; }
+.pg-root .content { padding: 20px 24px 48px;
+    max-width: 1280px;
+    margin: 0 auto; }
+.pg-root .group-section { margin-bottom: 32px; }
+.pg-root .group-label { font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px; }
+.pg-root .group-label::after { content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line); }
+.pg-root .teams-grid { display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 10px; }
+.pg-root .team-card { background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    overflow: hidden; }
+.pg-root .team-header { padding: 9px 12px 8px;
+    background: #1f341f;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    gap: 8px; }
+.pg-root .team-flag { font-size: 18px; line-height: 1; }
+.pg-root .team-name { font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    flex: 1; }
+.pg-root .team-tier { font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid; }
+.pg-root .tier-contender { color: var(--gold); border-color: var(--gold-dim); background: rgba(232,200,74,0.07); }
+.pg-root .tier-strong { color: #7ec8a0; border-color: #3d7a56; background: rgba(126,200,160,0.05); }
+.pg-root .tier-solid { color: var(--muted); border-color: #3a4f3a; background: transparent; }
+.pg-root .player-list { padding: 6px 12px 10px; }
+.pg-root .player-row { display: grid;
+    grid-template-columns: 26px 1fr auto;
+    align-items: baseline;
+    gap: 5px;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(61,107,61,0.2); }
+.pg-root .player-row:last-of-type { border-bottom: none; }
+.pg-root .player-pos { font-size: 9px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em; }
+.pg-root .player-name-wrap { display: flex;
+    align-items: baseline;
+    gap: 5px;
+    flex-wrap: wrap;
+    min-width: 0; }
+.pg-root .player-name { font-weight: 600;
+    font-size: 12.5px;
+    color: var(--white);
+    white-space: nowrap; }
+.pg-root .player-row.star .player-name { color: var(--gold); }
+.pg-root .rank-badge { font-size: 9px;
+    font-weight: 700;
+    padding: 1px 4px;
+    border-radius: 2px;
+    white-space: nowrap;
+    letter-spacing: 0.03em; }
+.pg-root .rank-espn { background: rgba(74,158,255,0.15); color: var(--rank-espn); border: 1px solid rgba(74,158,255,0.3); }
+.pg-root .rank-nbc { background: rgba(255,140,66,0.15);  color: var(--rank-nbc);  border: 1px solid rgba(255,140,66,0.3); }
+.pg-root .rank-fox { background: rgba(232,74,74,0.12);   color: var(--rank-fox);  border: 1px solid rgba(232,74,74,0.25); }
+.pg-root .player-club { font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px; }
+.pg-root .player-note { font-size: 10px;
+    color: #5a8f6a;
+    font-style: italic;
+    padding: 4px 0 2px;
+    line-height: 1.4;
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(61,107,61,0.15);
+    margin-top: 2px; }
+.pg-root .sources-section { border-top: 1px solid var(--line);
+    margin-top: 40px;
+    padding-top: 24px; }
+.pg-root .sources-title { font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px; }
+.pg-root .sources-grid { display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 8px; }
+.pg-root .source-item { background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 9px 12px; }
+.pg-root .source-label { font-weight: 600;
+    font-size: 12px;
+    color: var(--white);
+    margin-bottom: 2px; }
+.pg-root .source-url { font-size: 10px;
+    color: var(--muted);
+    word-break: break-all; }
+.pg-root .source-url a { color: #4a9eff; text-decoration: none; }
+.pg-root .source-url a:hover { text-decoration: underline; }
+.pg-root .source-desc { font-size: 10px;
+    color: #5a8f6a;
+    margin-top: 2px; }
+
+.pg-root .gb-wrap{max-width:920px;margin:0 auto;padding:22px 24px 56px}
+.pg-root .gb-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;
+letter-spacing:.05em;text-transform:uppercase;color:var(--gold);line-height:1}
+.pg-root .gb-sub{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:5px 0 18px}
+.pg-root .gb-table{width:100%;border-collapse:collapse}
+.pg-root .gb-table thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;
+letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;
+padding:8px 10px;border-bottom:1px solid var(--line)}
+.pg-root .gb-table th.num,.pg-root .gb-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+.pg-root .gb-table td{padding:9px 10px;border-bottom:1px solid rgba(61,107,61,.2);font-size:13px}
+.pg-root .gb-table tbody tr:hover{background:rgba(232,200,74,.04)}
+.pg-root .gb-rank{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--muted);width:34px}
+.pg-root .gb-row.lead .gb-rank{color:var(--gold)}
+.pg-root .gb-name{font-weight:600;color:var(--white)}
+.pg-root .gb-row.lead .gb-name{color:var(--gold)}
+.pg-root .gb-nat{color:var(--white)}
+.pg-root .gb-club{color:var(--muted);font-size:11.5px}
+.pg-root .gb-g{font-weight:700;color:var(--gold)}
+.pg-root .gb-note{margin-top:16px;font-size:11px;color:var(--muted);line-height:1.6;
+border-top:1px solid var(--line);padding-top:14px}
+.pg-root .gb-note b{color:var(--white);font-weight:600}
+@media(max-width:560px){.pg-root .gb-club{display:none}.pg-root .gb-wrap{padding:18px 14px 48px}}
 </style></head><body>
 <main>
+<nav class="tabs"><button class="tab active" onclick="showTab('tracker',this)">Price Tracker</button><button class="tab" onclick="showTab('guide',this)">Player Guide</button><button class="tab" onclick="showTab('golden',this)">Golden Boot</button></nav><div class="tabpanel" id="panel-tracker">
 <header class="topbar">
   <div>
     <h1>World Cup 2026 <span class="accent">Price Tracker</span></h1>
-    <div class="sub">Tuesday Jun 16, 2026 · 7:07 AM · party of 3 & 4 · ranked by value</div>
+    <div class="sub">Tuesday Jun 16, 2026 · 4:58 PM · party of 3 & 4 · ranked by value</div>
   </div>
   <div class="stats"><span class="stat"><b>45</b> matches</span><span class="stat">cheapest local <b>$446</b>/seat</span><span class="stat">first match <b>Jun 13</b></span></div>
 </header>
@@ -941,6 +1181,749 @@ value &amp; trend; buy only through FIFA official channels.</div></div>
     </tr></tbody></table>
 </div></section>
 <details class="scrape-log"><summary>Scrape history · 25 runs</summary><ul><li>Tue Jun 16, 2026 · 7:04 AM ET — <b>45</b> matches priced (41/45 ok)</li><li>Mon Jun 15, 2026 · 7:00 AM ET — <b>45</b> matches priced (41/45 ok)</li><li>Sun Jun 14, 2026 · 7:00 AM ET — <b>45</b> matches priced (43/45 ok)</li><li>Sat Jun 13, 2026 · 6:00 AM ET — <b>45</b> matches priced (0/45 ok)</li><li>Fri Jun 12, 2026 · 8:36 AM ET — <b>45</b> matches priced (45/45 ok)</li><li>Fri Jun 12, 2026 · 6:32 AM ET — <b>39</b> matches priced (0/39 ok)</li><li>Thu Jun 11, 2026 · 6:07 AM ET — <b>39</b> matches priced (0/39 ok)</li><li>Wed Jun 10, 2026 · 6:03 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Tue Jun 9, 2026 · 6:03 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Mon Jun 8, 2026 · 6:01 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Sun Jun 7, 2026 · 6:00 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Sat Jun 6, 2026 · 6:00 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Fri Jun 5, 2026 · 6:00 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Thu Jun 4, 2026 · 6:00 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Wed Jun 3, 2026 · 6:00 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Tue Jun 2, 2026 · 6:10 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Mon Jun 1, 2026 · 6:00 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Sun May 31, 2026 · 8:22 PM ET — <b>39</b> matches priced (39/39 ok)</li><li>Sun May 31, 2026 · 8:21 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Sun May 31, 2026 · 7:55 AM ET — <b>39</b> matches priced (39/39 ok)</li><li>Sat May 30, 2026 · 11:03 PM ET — <b>39</b> matches priced (106/175 ok)</li><li>Sat May 30, 2026 · 9:54 PM ET — <b>28</b> matches priced (44/74 ok)</li><li>Sat May 30, 2026 · 5:04 PM ET — <b>39</b> matches priced (39/39 ok)</li><li>Sat May 30, 2026 · 9:46 AM ET — <b>24</b> matches priced (24/24 ok)</li><li>Sat May 30, 2026 · 9:10 AM ET — <b>7</b> matches priced (7/7 ok)</li></ul></details>
+</div><div class="tabpanel" id="panel-guide" hidden><div class="pg-root"><div class="header">
+  <div>
+    <div class="header-title">2026 FIFA World Cup — Players by Group</div>
+    <div class="header-sub">48 teams · Groups A–L · Squads confirmed June 2, 2026</div>
+  </div>
+  <div class="legend-row">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--rank-espn)"></div>ESPN Top 50</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--rank-nbc)"></div>NBC Top 25</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--rank-fox)"></div>Fox Top 100</div>
+  </div>
+</div>
+
+<div class="filter-row">
+  <button class="filter-btn active" onclick="showAll(this)">All</button>
+  <button class="filter-btn" onclick="filterGroup(this,'A')">Group A</button>
+  <button class="filter-btn" onclick="filterGroup(this,'B')">Group B</button>
+  <button class="filter-btn" onclick="filterGroup(this,'C')">Group C</button>
+  <button class="filter-btn" onclick="filterGroup(this,'D')">Group D</button>
+  <button class="filter-btn" onclick="filterGroup(this,'E')">Group E</button>
+  <button class="filter-btn" onclick="filterGroup(this,'F')">Group F</button>
+  <button class="filter-btn" onclick="filterGroup(this,'G')">Group G</button>
+  <button class="filter-btn" onclick="filterGroup(this,'H')">Group H</button>
+  <button class="filter-btn" onclick="filterGroup(this,'I')">Group I</button>
+  <button class="filter-btn" onclick="filterGroup(this,'J')">Group J</button>
+  <button class="filter-btn" onclick="filterGroup(this,'K')">Group K</button>
+  <button class="filter-btn" onclick="filterGroup(this,'L')">Group L</button>
+</div>
+
+<div class="content">
+
+<!-- GROUP A -->
+<div class="group-section" data-group="A">
+  <div class="group-label">Group A — Mexico · South Korea · South Africa · Czechia</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇲🇽</span><span class="team-name">Mexico</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Santiago Giménez</span></span><span class="player-club">AC Milan</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Raúl Jiménez</span><span class="rank-badge rank-fox">FOX #90</span></span><span class="player-club">Fulham</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Edson Álvarez</span></span><span class="player-club">Fenerbahçe (loan/WHU)</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Obed Vargas</span></span><span class="player-club">Atlético Madrid</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">César Huerta</span></span><span class="player-club">Anderlecht</span></div>
+        <div class="player-row"><span class="player-pos">GK</span><span class="player-name-wrap"><span class="player-name">Guillermo Ochoa</span></span><span class="player-club">AEL Limassol</span></div>
+        <div class="player-note">Ochoa (41) joins Messi & Ronaldo as one of only three players ever at 6 World Cups. Giménez is the main threat. Backup GK Rangel expected to start.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇰🇷</span><span class="team-name">South Korea</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Son Heung-min</span></span><span class="player-club">LAFC (MLS)</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Kim Min-jae</span><span class="rank-badge rank-fox">FOX #98</span></span><span class="player-club">Bayern Munich</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Lee Kang-in</span></span><span class="player-club">PSG</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Cho Gue-sung</span></span><span class="player-club">Middlesbrough</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Hwang In-beom</span></span><span class="player-club">Feyenoord</span></div>
+        <div class="player-note">Son joined LAFC from Spurs (Aug 2025, MLS record ~$26.5M) after winning the Europa League as captain. His 4th and likely final World Cup.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇿🇦</span><span class="team-name">South Africa</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Percy Tau</span></span><span class="player-club">Al Ahly</span></div>
+        <div class="player-row"><span class="player-pos">GK</span><span class="player-name-wrap"><span class="player-name">Ronwen Williams</span></span><span class="player-club">Mamelodi Sundowns</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Teboho Mokoena</span></span><span class="player-club">Mamelodi Sundowns</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Evidence Makgopa</span></span><span class="player-club">Kaizer Chiefs</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇨🇿</span><span class="team-name">Czechia</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Patrik Schick</span></span><span class="player-club">Bayer Leverkusen</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Tomáš Souček</span></span><span class="player-club">West Ham</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Pavel Šulc</span></span><span class="player-club">Olympique Lyonnais</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Adam Hložek</span></span><span class="player-club">Hoffenheim</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Robin Hranáč</span></span><span class="player-club">Hoffenheim</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP B -->
+<div class="group-section" data-group="B">
+  <div class="group-label">Group B — Canada · Switzerland · Qatar · Bosnia & Herzegovina</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇨🇦</span><span class="team-name">Canada</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">LB</span><span class="player-name-wrap"><span class="player-name">Alphonso Davies</span></span><span class="player-club">Bayern Munich</span></div>
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Jonathan David</span></span><span class="player-club">Juventus</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Stephen Eustáquio</span></span><span class="player-club">FC Porto</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Tajon Buchanan</span></span><span class="player-club">Villarreal</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Ismaël Koné</span></span><span class="player-club">US Sassuolo</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Cyle Larin</span></span><span class="player-club">Southampton</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇨🇭</span><span class="team-name">Switzerland</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Granit Xhaka</span></span><span class="player-club">Bayer Leverkusen</span></div>
+        <div class="player-row"><span class="player-pos">GK</span><span class="player-name-wrap"><span class="player-name">Yann Sommer</span></span><span class="player-club">Inter Milan</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Manuel Akanji</span></span><span class="player-club">Manchester City</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Remo Freuler</span></span><span class="player-club">Bologna</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Breel Embolo</span></span><span class="player-club">AS Monaco</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Fabian Rieder</span></span><span class="player-club">Marseille</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇶🇦</span><span class="team-name">Qatar</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Akram Afif</span></span><span class="player-club">Al Sadd</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Almoez Ali</span></span><span class="player-club">Al Duhail</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Karim Boudiaf</span></span><span class="player-club">Al Sadd</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇧🇦</span><span class="team-name">Bosnia & Herzegovina</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Ermedin Demirović</span></span><span class="player-club">VfB Stuttgart</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Sead Kolašinac</span></span><span class="player-club">Atalanta</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Edin Džeko</span></span><span class="player-club">Schalke 04</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Edim Bajraktarević</span></span><span class="player-club">PSV Eindhoven</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP C -->
+<div class="group-section" data-group="C">
+  <div class="group-label">Group C — Brazil · Morocco · Scotland · Haiti</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇧🇷</span><span class="team-name">Brazil</span><span class="team-tier tier-contender">Contender</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Vinícius Jr.</span></span><span class="player-club">Real Madrid</span></div>
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Raphinha</span><span class="rank-badge rank-espn">ESPN #8</span><span class="rank-badge rank-nbc">NBC #7</span></span><span class="player-club">Barcelona</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Neymar</span><span class="rank-badge rank-fox">FOX #100</span></span><span class="player-club">Al Hilal</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Marquinhos</span></span><span class="player-club">PSG</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Lucas Paquetá</span></span><span class="player-club">West Ham</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Endrick</span></span><span class="player-club">Real Madrid</span></div>
+        <div class="player-note">Carlo Ancelotti coaching Brazil. Neymar's fitness uncertain; Vinícius & Raphinha are the stars. Neymar ranked dead last (100th) by Fox, reflecting age and injury history.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇲🇦</span><span class="team-name">Morocco</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">RB</span><span class="player-name-wrap"><span class="player-name">Achraf Hakimi</span></span><span class="player-club">PSG</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Brahim Díaz</span></span><span class="player-club">Real Madrid</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Hakim Ziyech</span></span><span class="player-club">Galatasaray</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Sofyan Amrabat</span></span><span class="player-club">Manchester United</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Youssef En-Nesyri</span></span><span class="player-club">Fenerbahçe</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Azzedine Ounahi</span></span><span class="player-club">Marseille</span></div>
+        <div class="player-note">Brahim Díaz committed to Morocco after time in Spanish youth teams; scored 5 goals at the 2025 AFCON and is a major breakout candidate.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span class="team-name">Scotland</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Scott McTominay</span></span><span class="player-club">Napoli</span></div>
+        <div class="player-row"><span class="player-pos">LB</span><span class="player-name-wrap"><span class="player-name">Andrew Robertson</span></span><span class="player-club">Liverpool</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">John McGinn</span></span><span class="player-club">Aston Villa</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Ryan Christie</span></span><span class="player-club">Bournemouth</span></div>
+        <div class="player-row"><span class="player-pos">GK</span><span class="player-name-wrap"><span class="player-name">Craig Gordon</span></span><span class="player-club">Hearts</span></div>
+        <div class="player-note">First WC in 28 years. Craig Gordon (43) is 2nd-oldest player at tournament. McTominay is the key creative force.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇭🇹</span><span class="team-name">Haiti</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Derrick Etienne Jr.</span></span><span class="player-club">Toronto FC</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Frantzdy Pierrot</span></span><span class="player-club">New England Revolution</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Duckens Nazon</span></span><span class="player-club">Rodez AF</span></div>
+        <div class="player-note">Haiti's 2nd WC ever, first since 1974.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP D -->
+<div class="group-section" data-group="D">
+  <div class="group-label">Group D — USA · Paraguay · Australia · Türkiye</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇺🇸</span><span class="team-name">USA</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Christian Pulisic</span></span><span class="player-club">AC Milan</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Weston McKennie</span></span><span class="player-club">Juventus</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Tyler Adams</span></span><span class="player-club">Bournemouth</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Gio Reyna</span></span><span class="player-club">Borussia Mönchengladbach</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Ricardo Pepi</span></span><span class="player-club">PSV Eindhoven</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Folarin Balogun</span></span><span class="player-club">Monaco</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Tim Weah</span></span><span class="player-club">Marseille</span></div>
+        <div class="player-note">Pulisic is the star. Reyna now at Mönchengladbach. No Dest or Brenden Aaronson in key roles; squad is young and deep. Coach: Mauricio Pochettino.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇵🇾</span><span class="team-name">Paraguay</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Miguel Almirón</span></span><span class="player-club">Newcastle United</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Julio Enciso</span></span><span class="player-club">Brighton</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Mathías Villasanti</span></span><span class="player-club">Grêmio</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Antonio Sanabria</span></span><span class="player-club">Torino</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇦🇺</span><span class="team-name">Australia</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">GK</span><span class="player-name-wrap"><span class="player-name">Mathew Ryan</span></span><span class="player-club">AZ Alkmaar</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Riley McGree</span></span><span class="player-club">Middlesbrough</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Mitchell Duke</span></span><span class="player-club">Fagiano Okayama</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Cameron Devlin</span></span><span class="player-club">Hearts</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇹🇷</span><span class="team-name">Türkiye</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Arda Güler</span></span><span class="player-club">Real Madrid</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Kenan Yıldız</span><span class="rank-badge rank-fox">FOX #89</span></span><span class="player-club">Juventus</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Hakan Çalhanoğlu</span></span><span class="player-club">Inter Milan</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Kerem Aktürkoğlu</span></span><span class="player-club">Galatasaray</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Baris Alper Yılmaz</span></span><span class="player-club">Galatasaray</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP E -->
+<div class="group-section" data-group="E">
+  <div class="group-label">Group E — Germany · Ivory Coast · Ecuador · Curaçao</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇩🇪</span><span class="team-name">Germany</span><span class="team-tier tier-contender">Contender</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Florian Wirtz</span><span class="rank-badge rank-espn">ESPN #34</span></span><span class="player-club">Liverpool</span></div>
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Jamal Musiala</span><span class="rank-badge rank-espn">ESPN #32</span></span><span class="player-club">Bayern Munich</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Kai Havertz</span><span class="rank-badge rank-fox">FOX #49</span></span><span class="player-club">Arsenal</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Joshua Kimmich</span></span><span class="player-club">Bayern Munich</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Jonathan Tah</span></span><span class="player-club">Bayern Munich</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Nick Woltemade</span></span><span class="player-club">Newcastle United</span></div>
+        <div class="player-note">Wirtz & Musiala are the tournament's most exciting midfield duo. Kimmich's passing grade led Europe's Big 5 (95.8, per Gradient Sports data, ESPN).</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇨🇮</span><span class="team-name">Ivory Coast</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Sébastien Haller</span></span><span class="player-club">Borussia Dortmund</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Yan Diomande</span><span class="rank-badge rank-espn">ESPN #33</span></span><span class="player-club">Manchester City</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Franck Kessié</span></span><span class="player-club">Al-Ahli</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Simon Adingra</span></span><span class="player-club">Brighton</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇪🇨</span><span class="team-name">Ecuador</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Moisés Caicedo</span></span><span class="player-club">Chelsea</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Enner Valencia</span></span><span class="player-club">Internacional (captain)</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Kendry Páez</span></span><span class="player-club">Independiente del Valle</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Pervis Estupiñán</span><span class="rank-badge rank-fox">FOX #100</span></span><span class="player-club">AC Milan</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇨🇼</span><span class="team-name">Curaçao</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Leandro Bacuna</span></span><span class="player-club">Free agent</span></div>
+        <div class="player-note">First World Cup. Smallest nation in the tournament (~158k population).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP F -->
+<div class="group-section" data-group="F">
+  <div class="group-label">Group F — Netherlands · Japan · Sweden · Tunisia</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇳🇱</span><span class="team-name">Netherlands</span><span class="team-tier tier-contender">Contender</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Virgil van Dijk</span></span><span class="player-club">Liverpool (captain)</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Cody Gakpo</span></span><span class="player-club">Liverpool</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Xavi Simons</span></span><span class="player-club">PSG</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Tijjani Reijnders</span></span><span class="player-club">AC Milan</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Frenkie de Jong</span></span><span class="player-club">Barcelona</span></div>
+        <div class="player-row"><span class="player-pos">RB</span><span class="player-name-wrap"><span class="player-name">Jeremie Frimpong</span></span><span class="player-club">Liverpool</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Jurrien Timber</span></span><span class="player-club">Arsenal</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇯🇵</span><span class="team-name">Japan</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Takefusa Kubo</span></span><span class="player-club">Real Sociedad</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Kaoru Mitoma</span><span class="rank-badge rank-fox">FOX #94 ⚠️</span></span><span class="player-club">Brighton</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Wataru Endō</span></span><span class="player-club">Liverpool</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Ritsu Dōan</span></span><span class="player-club">Freiburg</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Ayase Ueda</span></span><span class="player-club">Feyenoord</span></div>
+        <div class="player-note">⚠️ Mitoma suffered a hamstring injury May 9 and may miss the tournament despite the Fox ranking.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇸🇪</span><span class="team-name">Sweden</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Viktor Gyökeres</span></span><span class="player-club">Sporting CP</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Alexander Isak</span><span class="rank-badge rank-fox">FOX #99</span></span><span class="player-club">Liverpool</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Dejan Kulusevski</span></span><span class="player-club">Tottenham</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Mattias Svanberg</span></span><span class="player-club">Wolfsburg</span></div>
+        <div class="player-note">Isak moved from Newcastle to Liverpool in summer 2025. Gyökeres is one of the tournament's most dangerous strikers after his Sporting breakout.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇹🇳</span><span class="team-name">Tunisia</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Hannibal Mejbri</span></span><span class="player-club">Burnley</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Ellyes Skhiri</span></span><span class="player-club">Eintracht Frankfurt</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Seifeddine Jaziri</span></span><span class="player-club">Kasımpaşa</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP G -->
+<div class="group-section" data-group="G">
+  <div class="group-label">Group G — Belgium · Egypt · Iran · New Zealand</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇧🇪</span><span class="team-name">Belgium</span><span class="team-tier tier-contender">Contender</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Kevin De Bruyne</span></span><span class="player-club">Napoli</span></div>
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Romelu Lukaku</span></span><span class="player-club">Napoli</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Amadou Onana</span></span><span class="player-club">Aston Villa</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Jeremy Doku</span></span><span class="player-club">Manchester City</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Leandro Trossard</span></span><span class="player-club">Arsenal</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Charles De Ketelaere</span></span><span class="player-club">Atalanta</span></div>
+        <div class="player-row"><span class="player-pos">GK</span><span class="player-name-wrap"><span class="player-name">Thibaut Courtois</span></span><span class="player-club">Real Madrid</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇪🇬</span><span class="team-name">Egypt</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Mohamed Salah</span><span class="rank-badge rank-fox">FOX #50</span></span><span class="player-club">Liverpool</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Mahmoud Trezeguet</span></span><span class="player-club">Al Ahly</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Emam Ashour</span></span><span class="player-club">Al Ahly</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Ibrahim Adel</span></span><span class="player-club">Nordsjaelland</span></div>
+        <div class="player-note">Salah is Egypt's entire attacking identity. Otherwise mostly domestic-based.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇮🇷</span><span class="team-name">Iran</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Mehdi Taremi</span></span><span class="player-club">Inter Milan</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Sardar Azmoun</span></span><span class="player-club">Bayer Leverkusen</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Alireza Jahanbakhsh</span></span><span class="player-club">Feyenoord</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Saman Ghoddos</span></span><span class="player-club">Southampton</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇳🇿</span><span class="team-name">New Zealand</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Chris Wood</span></span><span class="player-club">Nottingham Forest</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Callum McCowatt</span></span><span class="player-club">Hellas Verona</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Sarpreet Singh</span></span><span class="player-club">Stuttgart</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP H -->
+<div class="group-section" data-group="H">
+  <div class="group-label">Group H — Spain · Uruguay · Saudi Arabia · Cape Verde</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇪🇸</span><span class="team-name">Spain</span><span class="team-tier tier-contender">Contender</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Lamine Yamal</span><span class="rank-badge rank-espn">ESPN #2</span><span class="rank-badge rank-nbc">NBC #2</span></span><span class="player-club">Barcelona</span></div>
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Pedri</span><span class="rank-badge rank-espn">ESPN #6</span></span><span class="player-club">Barcelona</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Rodri</span></span><span class="player-club">Manchester City</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Dani Olmo</span></span><span class="player-club">Barcelona</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Nico Williams</span></span><span class="player-club">Athletic Bilbao</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Mikel Oyarzabal</span><span class="rank-badge rank-fox">FOX #92</span></span><span class="player-club">Real Sociedad</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Pau Cubarsí</span></span><span class="player-club">Barcelona</span></div>
+        <div class="player-note">Tournament favorites. Euro 2024 winners, unbeaten since March 2024. Yamal & Pedri are world-class. Oyarzabal scored in Euro 2024 final; has scored in all 6 career finals.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇺🇾</span><span class="team-name">Uruguay</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Federico Valverde</span></span><span class="player-club">Real Madrid</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Darwin Núñez</span></span><span class="player-club">Liverpool</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Ronald Araújo</span></span><span class="player-club">Barcelona</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Rodrigo Bentancur</span></span><span class="player-club">Tottenham</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Manuel Ugarte</span></span><span class="player-club">Manchester United</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">José María Giménez</span></span><span class="player-club">Atlético Madrid</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇸🇦</span><span class="team-name">Saudi Arabia</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Salem Al-Dawsari</span></span><span class="player-club">Al-Hilal</span></div>
+        <div class="player-row"><span class="player-pos">GK</span><span class="player-name-wrap"><span class="player-name">Mohammed Al-Owais</span></span><span class="player-club">Al-Hilal</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Firas Al-Buraikan</span></span><span class="player-club">Al-Fateh</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇨🇻</span><span class="team-name">Cape Verde</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">GK</span><span class="player-name-wrap"><span class="player-name">Vozinha</span></span><span class="player-club">Arouca</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Ryan Mendes</span></span><span class="player-club">Hobro IK</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Garry Rodrigues</span></span><span class="player-club">Yeni Malatyaspor</span></div>
+        <div class="player-note">Vozinha went viral stopping Spain in Group H opener — gained millions of followers overnight. The tournament's breakout GK story.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP I -->
+<div class="group-section" data-group="I">
+  <div class="group-label">Group I — France · Senegal · Norway · Iraq</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇫🇷</span><span class="team-name">France</span><span class="team-tier tier-contender">Contender</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Ousmane Dembélé</span><span class="rank-badge rank-espn">ESPN #1</span></span><span class="player-club">PSG</span></div>
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Kylian Mbappé</span><span class="rank-badge rank-nbc">NBC #1</span></span><span class="player-club">Real Madrid</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Michael Olise</span><span class="rank-badge rank-espn">ESPN #3</span><span class="rank-badge rank-nbc">NBC #9</span></span><span class="player-club">Bayern Munich</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">William Saliba</span><span class="rank-badge rank-espn">ESPN #7</span></span><span class="player-club">Arsenal</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Antoine Griezmann</span></span><span class="player-club">Atlético Madrid</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Jules Koundé</span></span><span class="player-club">Barcelona</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Marcus Thuram</span><span class="rank-badge rank-fox">FOX #93</span></span><span class="player-club">Inter Milan</span></div>
+        <div class="player-note">World ranked #1. ESPN's top 3 players at this WC are all French. ESPN & NBC diverge on #1: Dembélé (ESPN) vs Mbappé (NBC). Group I is the "group of death."</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇸🇳</span><span class="team-name">Senegal</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Sadio Mané</span></span><span class="player-club">Al-Nassr</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Nicolas Jackson</span></span><span class="player-club">Chelsea (loan: Bayern)</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Ismaila Sarr</span></span><span class="player-club">Crystal Palace</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Iliman Ndiaye</span></span><span class="player-club">Everton</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Pape Matar Sarr</span></span><span class="player-club">Tottenham</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Lamine Camara</span></span><span class="player-club">AS Monaco</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Kalidou Koulibaly</span></span><span class="player-club">Al-Hilal</span></div>
+        <div class="player-row"><span class="player-pos">GK</span><span class="player-name-wrap"><span class="player-name">Édouard Mendy</span></span><span class="player-club">Al-Ahli</span></div>
+        <div class="player-note">Jackson (Chelsea, on loan at Bayern) scored 11 goals this season. 23 of 26 Senegal players are at European clubs. Arguably Africa's most dangerous squad ever.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇳🇴</span><span class="team-name">Norway</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Erling Haaland</span><span class="rank-badge rank-nbc">NBC #8</span></span><span class="player-club">Manchester City</span></div>
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Martin Ødegaard</span><span class="rank-badge rank-espn">ESPN #10</span></span><span class="player-club">Arsenal</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Oscar Bobb</span></span><span class="player-club">Manchester City</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Alexander Sørloth</span></span><span class="player-club">Atlético Madrid</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Kristoffer Ajer</span></span><span class="player-club">Brentford</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇮🇶</span><span class="team-name">Iraq</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Amjad Attwan</span></span><span class="player-club">Al-Shorta</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Aymen Hussein</span></span><span class="player-club">Al-Zawraa</span></div>
+        <div class="player-note">First WC since 1986. Facing France, Senegal & Norway — the toughest draw imaginable.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP J -->
+<div class="group-section" data-group="J">
+  <div class="group-label">Group J — Argentina · Algeria · Austria · Jordan</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇦🇷</span><span class="team-name">Argentina</span><span class="team-tier tier-contender">Contender</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Lionel Messi</span><span class="rank-badge rank-nbc">NBC #4</span><span class="rank-badge rank-fox">FOX #12</span></span><span class="player-club">Inter Miami (MLS)</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Lautaro Martínez</span></span><span class="player-club">Inter Milan</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Julián Álvarez</span></span><span class="player-club">Atlético Madrid</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Enzo Fernández</span></span><span class="player-club">Chelsea</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Rodrigo De Paul</span></span><span class="player-club">Atlético Madrid</span></div>
+        <div class="player-row"><span class="player-pos">GK</span><span class="player-name-wrap"><span class="player-name">Emiliano Martínez</span></span><span class="player-club">Aston Villa</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Lisandro Martínez</span><span class="rank-badge rank-fox">FOX #96</span></span><span class="player-club">Manchester United</span></div>
+        <div class="player-note">Messi (38) leads all WC players with 13 career WC goals — one of only three players at his 6th World Cup. Defending champions. ESPN ranks him 11th–25th tier.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇩🇿</span><span class="team-name">Algeria</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Riyad Mahrez</span></span><span class="player-club">Al-Ahli</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Ismaël Bennacer</span></span><span class="player-club">AC Milan</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Yacine Brahimi</span></span><span class="player-club">Al-Qadsiah</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇦🇹</span><span class="team-name">Austria</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Marcel Sabitzer</span></span><span class="player-club">Borussia Dortmund</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Konrad Laimer</span></span><span class="player-club">Bayern Munich</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Xaver Schlager</span></span><span class="player-club">RB Leipzig</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">David Alaba</span></span><span class="player-club">Real Madrid</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Romano Schmid</span></span><span class="player-club">Werder Bremen</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇯🇴</span><span class="team-name">Jordan</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Musa Al-Tamari</span></span><span class="player-club">Montpellier</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Yazan Al-Arab</span></span><span class="player-club">Al-Qadsiah</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP K -->
+<div class="group-section" data-group="K">
+  <div class="group-label">Group K — Portugal · Colombia · DR Congo · Uzbekistan</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇵🇹</span><span class="team-name">Portugal</span><span class="team-tier tier-contender">Contender</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Bruno Fernandes</span><span class="rank-badge rank-espn">ESPN #5</span><span class="rank-badge rank-nbc">NBC #6</span></span><span class="player-club">Manchester United</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Cristiano Ronaldo</span><span class="rank-badge rank-fox">FOX #37</span></span><span class="player-club">Al-Nassr</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Bernardo Silva</span></span><span class="player-club">Manchester City</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Rúben Dias</span></span><span class="player-club">Manchester City</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Rafael Leão</span></span><span class="player-club">AC Milan</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Gonçalo Ramos</span><span class="rank-badge rank-fox">FOX #91</span></span><span class="player-club">PSG</span></div>
+        <div class="player-note">⚠️ Diogo Jota died July 3, 2025 in a car crash in Spain aged 28, along with his brother André. He will not be at this tournament. Ronaldo (41) is at his 6th WC. Bruno Fernandes is Portugal's true engine.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇨🇴</span><span class="team-name">Colombia</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Luis Díaz</span></span><span class="player-club">Liverpool</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">James Rodríguez</span></span><span class="player-club">Rayo Vallecano</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Davinson Sánchez</span></span><span class="player-club">Galatasaray</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Richard Ríos</span></span><span class="player-club">Palmeiras</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Rafael Santos Borré</span></span><span class="player-club">Werder Bremen</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇨🇩</span><span class="team-name">DR Congo</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Yoane Wissa</span></span><span class="player-club">Newcastle United</span></div>
+        <div class="player-row"><span class="player-pos">RB</span><span class="player-name-wrap"><span class="player-name">Aaron Wan-Bissaka</span></span><span class="player-club">West Ham</span></div>
+        <div class="player-row"><span class="player-pos">LB</span><span class="player-name-wrap"><span class="player-name">Arthur Masuaku</span></span><span class="player-club">Besiktas</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Théo Bongonda</span></span><span class="player-club">OH Leuven</span></div>
+        <div class="player-note">First WC. Beat Jamaica in intercontinental playoff. Débuted a creditable draw vs. Denmark in warmups.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇺🇿</span><span class="team-name">Uzbekistan</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Abbosbek Fayzullaev</span></span><span class="player-club">CSKA Moscow</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Eldor Shomurodov</span></span><span class="player-club">Roma</span></div>
+        <div class="player-note">First World Cup for Uzbekistan.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GROUP L -->
+<div class="group-section" data-group="L">
+  <div class="group-label">Group L — England · Croatia · Ghana · Panama</div>
+  <div class="teams-grid">
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="team-name">England</span><span class="team-tier tier-contender">Contender</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Harry Kane</span><span class="rank-badge rank-espn">ESPN #4</span><span class="rank-badge rank-nbc">NBC #5</span></span><span class="player-club">Bayern Munich</span></div>
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Jude Bellingham</span></span><span class="player-club">Real Madrid</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Bukayo Saka</span><span class="rank-badge rank-espn">ESPN #9</span></span><span class="player-club">Arsenal</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Declan Rice</span></span><span class="player-club">Arsenal</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Marcus Rashford</span></span><span class="player-club">Manchester United</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Anthony Gordon</span></span><span class="player-club">Newcastle United</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Eberechi Eze</span><span class="rank-badge rank-fox">FOX #88</span></span><span class="player-club">Arsenal</span></div>
+        <div class="player-note">⚠️ Phil Foden & Cole Palmer cut by Tuchel (poor club seasons). Trent Alexander-Arnold also omitted. Foden ranked FOX #95 before omission. Kane has 8 WC goals.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇭🇷</span><span class="team-name">Croatia</span><span class="team-tier tier-strong">Strong</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Luka Modrić</span></span><span class="player-club">Real Madrid</span></div>
+        <div class="player-row"><span class="player-pos">CB</span><span class="player-name-wrap"><span class="player-name">Joško Gvardiol</span></span><span class="player-club">Manchester City</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Mateo Kovačić</span></span><span class="player-club">Manchester City</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Ivan Perišić</span></span><span class="player-club">Hajduk Split</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Marcelo Brozović</span></span><span class="player-club">Al-Nassr</span></div>
+        <div class="player-note">Modrić's passing grade of 98.8 led all Europe's Big 5 this season (Gradient Sports). Almost certainly his final World Cup. 2018 runners-up, 2022 third place.</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇬🇭</span><span class="team-name">Ghana</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Mohammed Kudus</span></span><span class="player-club">West Ham</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Jordan Ayew</span></span><span class="player-club">Crystal Palace</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">Thomas Partey</span></span><span class="player-club">Arsenal</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Antoine Semenyo</span></span><span class="player-club">Bournemouth</span></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header"><span class="team-flag">🇵🇦</span><span class="team-name">Panama</span><span class="team-tier tier-solid">Solid</span></div>
+      <div class="player-list">
+        <div class="player-row star"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Ismael Díaz</span></span><span class="player-club">Anderlecht</span></div>
+        <div class="player-row"><span class="player-pos">FW</span><span class="player-name-wrap"><span class="player-name">Freddie Hall</span></span><span class="player-club">Real Betis</span></div>
+        <div class="player-row"><span class="player-pos">MF</span><span class="player-name-wrap"><span class="player-name">César Yanis</span></span><span class="player-club">Santos FC</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SOURCES -->
+<div class="sources-section">
+  <div class="sources-title">Sources & References</div>
+  <div class="sources-grid">
+
+    <div class="source-item">
+      <div class="source-label">ESPN — Top 50 Players at the 2026 World Cup</div>
+      <div class="source-url"><a href="https://www.espn.com/soccer/story/_/id/48991846/world-cup-rank-50-best-players-2026-tournament" target="_blank">espn.com — World Cup Rank Top 50</a></div>
+      <div class="source-desc">Ryan O'Hanlon, June 8 2026. Source of ESPN player rankings (#1–50) shown as blue badges.</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">NBC Sports — Ranking the Top 25 Players</div>
+      <div class="source-url"><a href="https://www.nbcsports.com/soccer/news/ranking-the-top-25-players-at-the-2026-world-cup" target="_blank">nbcsports.com — Top 25 Players</a></div>
+      <div class="source-desc">Source of NBC rankings shown as orange badges. NBC #1 = Mbappé; ESPN #1 = Dembélé.</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">Fox Sports — Top 100 Players at the 2026 World Cup</div>
+      <div class="source-url"><a href="https://www.foxsports.com/stories/soccer/world-cup-2026-ranking-best-100-players" target="_blank">foxsports.com — Top 100 Players</a></div>
+      <div class="source-desc">Edu, Holden & Lalas. Updated May 25 2026. Source of FOX rankings shown as red badges. Note: Foden ranked #95 but subsequently omitted from England's squad.</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">ESPN / Al Jazeera — England 2026 Squad (Tuchel)</div>
+      <div class="source-url"><a href="https://www.espn.com/soccer/story/_/id/48841808/england-2026-world-cup-squad-foden-palmer-toney-magure-madueke-watkins-kane-stones-alexander-arnold" target="_blank">espn.com — England Squad Confirmed</a></div>
+      <div class="source-desc">Foden, Palmer, Trent Alexander-Arnold all omitted. Toney & Stones in. Announced May 22 2026.</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">CNN / Liverpool.com — Diogo Jota death</div>
+      <div class="source-url"><a href="https://www.cnn.com/2025/07/03/sport/diogo-jota-liverpool-death-spt" target="_blank">cnn.com — Diogo Jota dies aged 28</a></div>
+      <div class="source-desc">Jota and his brother André Silva died July 3, 2025 in a car crash on the A-52 in Zamora, Spain. He is not at this tournament.</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">LAFC / MLS Soccer — Son Heung-min to LAFC</div>
+      <div class="source-url"><a href="https://www.lafc.com/news/lafc-signs-global-football-icon-son-heung-min" target="_blank">lafc.com — Son Heung-min signing</a></div>
+      <div class="source-desc">Signed August 6, 2025 from Tottenham for a reported MLS record ~$26.5M. Son captained Korea's squad.</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">Olympics.com / FIFA — All 48 Squad Lists</div>
+      <div class="source-url"><a href="https://www.olympics.com/en/news/2026-fifa-world-cup-football-teams-squads-players-complete-list" target="_blank">olympics.com — Complete Squad Lists</a></div>
+      <div class="source-desc">Official squad data for all 48 teams, confirmed June 2 2026 (FIFA deadline).</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">Chelsea FC / Africa Top Sports — Senegal Squad</div>
+      <div class="source-url"><a href="https://www.chelseafc.com/en/news/article/chelsea-duo-named-in-senegal-squad-for-2026-world-cup" target="_blank">chelseafc.com — Jackson & Mamadou Sarr named</a></div>
+      <div class="source-desc">Confirms Nicolas Jackson (Chelsea, on loan at Bayern) and Mamadou Sarr (Chelsea) in Senegal's confirmed squad.</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">ESPN — Mexico Squad (Ochoa)</div>
+      <div class="source-url"><a href="https://www.espn.com/soccer/story/_/id/48924377/mexico-2026-world-cup-squad-guillermo-ochoa" target="_blank">espn.com — Mexico's Ochoa named to 6th WC squad</a></div>
+      <div class="source-desc">Ochoa confirmed in Mexico's 26-man squad. Rangel (Chivas) expected to start in goal; Ochoa is backup.</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">Fox Sports — Haiti player to watch</div>
+      <div class="source-url"><a href="https://www.foxsports.com/stories/soccer/world-cup-top-players-48-countries-teams" target="_blank">foxsports.com — One Player to Watch Per Team</a></div>
+      <div class="source-desc">Fox identifies Derrick Etienne Jr. (Toronto FC) as Haiti's key player, not Pierrot.</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">Al Jazeera — Senegal Squad Preview</div>
+      <div class="source-url"><a href="https://www.aljazeera.com/sports/2026/5/30/senegals-world-cup-2026-team-preview-players-to-watch-group-squad-list" target="_blank">aljazeera.com — Senegal WC 2026 Preview</a></div>
+      <div class="source-desc">Full squad breakdown including Jackson (Bayern loan), Ismaila Sarr, Iliman Ndiaye, Pape Matar Sarr, Koulibaly, Mendy.</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-label">ESPN — 2026 World Cup Squad Lists (All 48)</div>
+      <div class="source-url"><a href="https://www.espn.com/soccer/story/_/id/48757621/2026-world-cup-squad-lists-players-announced-all-48-teams" target="_blank">espn.com — All 48 Team Squad Lists</a></div>
+      <div class="source-desc">Primary squad reference used throughout. Confirms clubs, positions, and squad composition for all groups.</div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- end .content --></div></div><div class="tabpanel" id="panel-golden" hidden><div class="pg-root"><div class="gb-wrap"><div class="gb-title">Golden Boot</div><div class="gb-sub">Matchday 1 (June 11-15, 2026) · updated 2026-06-15</div><table class="gb-table"><thead><tr><th class="gb-rank">#</th><th>Player</th><th>Nation</th><th>Club</th><th class="num">G</th><th class="num">A</th><th class="num">Min</th></tr></thead><tbody><tr class="gb-row lead"><td class="gb-rank">1</td><td class="gb-name">Folarin Balogun</td><td class="gb-nat">USA</td><td class="gb-club">Monaco</td><td class="num gb-g">2</td><td class="num">0</td><td class="num">77'</td></tr><tr class="gb-row lead"><td class="gb-rank">2</td><td class="gb-name">Kai Havertz</td><td class="gb-nat">Germany</td><td class="gb-club">Arsenal</td><td class="num gb-g">2</td><td class="num">0</td><td class="num">100'</td></tr><tr class="gb-row lead"><td class="gb-rank">2</td><td class="gb-name">Yasin Ayari</td><td class="gb-nat">Sweden</td><td class="gb-club"></td><td class="num gb-g">2</td><td class="num">0</td><td class="num">100'</td></tr><tr class="gb-row lead"><td class="gb-rank">4</td><td class="gb-name">Elijah Just</td><td class="gb-nat">New Zealand</td><td class="gb-club"></td><td class="num gb-g">2</td><td class="num">0</td><td class="num">101'</td></tr><tr class="gb-row"><td class="gb-rank">5</td><td class="gb-name">Gio Reyna</td><td class="gb-nat">USA</td><td class="gb-club">Borussia Mönchengladbach</td><td class="num gb-g">1</td><td class="num">0</td><td class="num">—</td></tr><tr class="gb-row"><td class="gb-rank">5</td><td class="gb-name">Virgil van Dijk</td><td class="gb-nat">Netherlands</td><td class="gb-club">Liverpool</td><td class="num gb-g">1</td><td class="num">0</td><td class="num">—</td></tr><tr class="gb-row"><td class="gb-rank">5</td><td class="gb-name">Vinícius Jr.</td><td class="gb-nat">Brazil</td><td class="gb-club">Real Madrid</td><td class="num gb-g">1</td><td class="num">0</td><td class="num">—</td></tr><tr class="gb-row"><td class="gb-rank">5</td><td class="gb-name">John McGinn</td><td class="gb-nat">Scotland</td><td class="gb-club">Aston Villa</td><td class="num gb-g">1</td><td class="num">0</td><td class="num">—</td></tr><tr class="gb-row"><td class="gb-rank">5</td><td class="gb-name">Jamal Musiala</td><td class="gb-nat">Germany</td><td class="gb-club">Bayern Munich</td><td class="num gb-g">1</td><td class="num">0</td><td class="num">—</td></tr><tr class="gb-row"><td class="gb-rank">5</td><td class="gb-name">Felix Nmecha</td><td class="gb-nat">Germany</td><td class="gb-club">Borussia Dortmund</td><td class="num gb-g">1</td><td class="num">0</td><td class="num">—</td></tr><tr class="gb-row"><td class="gb-rank">5</td><td class="gb-name">Cyle Larin</td><td class="gb-nat">Canada</td><td class="gb-club">Southampton</td><td class="num gb-g">1</td><td class="num">0</td><td class="num">—</td></tr><tr class="gb-row"><td class="gb-rank">5</td><td class="gb-name">Breel Embolo</td><td class="gb-nat">Switzerland</td><td class="gb-club">AS Monaco</td><td class="num gb-g">1</td><td class="num">0</td><td class="num">—</td></tr><tr class="gb-row"><td class="gb-rank">5</td><td class="gb-name">Raúl Jiménez</td><td class="gb-nat">Mexico</td><td class="gb-club">Fulham</td><td class="num gb-g">1</td><td class="num">0</td><td class="num">—</td></tr><tr class="gb-row"><td class="gb-rank">5</td><td class="gb-name">Julián Quiñones</td><td class="gb-nat">Mexico</td><td class="gb-club">Al-Qadsiah</td><td class="num gb-g">1</td><td class="num">0</td><td class="num">—</td></tr></tbody></table><div class="gb-note">Ranked by the official FIFA tiebreaker: <b>goals → assists → fewest minutes played</b>. Edit <b>data/golden_boot.json</b> and re-render to update after each matchday.</div></div></div></div>
 </main>
 <script>
 function filt(){const sel=[...document.querySelectorAll('.locchk:checked')].map(c=>c.value);
@@ -964,4 +1947,18 @@ return dir==='asc'?(x<y?-1:x>y?1:0):(x<y?1:x>y?-1:0);}).forEach(r=>b.appendChild
 const ar=document.createElement('span');ar.className='ar';ar.textContent=dir==='asc'?' ▲':' ▼';th.appendChild(ar);}
 function toggleProj(b){const open=b.getAttribute('aria-expanded')==='true';
 b.setAttribute('aria-expanded',String(!open));b.nextElementSibling.hidden=open;}
-</script></body></html>
+
+function showTab(n,b){document.querySelectorAll('.tabpanel').forEach(p=>{p.hidden=p.id!=='panel-'+n});document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.toggle('active',x===b));window.scrollTo(0,0);}
+function showAll(btn) {
+    document.querySelectorAll('.group-section').forEach(s => s.style.display = '');
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function filterGroup(btn, g) {
+    document.querySelectorAll('.group-section').forEach(s => {
+      s.style.display = s.dataset.group === g ? '' : 'none';
+    });
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }</script></body></html>
